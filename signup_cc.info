@@ -1,0 +1,5 @@
+
+name = Policy Signup
+description = Allow users to signup to the policy newsletter on constant contact.
+core = 6.x
+package = Hayes

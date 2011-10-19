@@ -1,0 +1,122 @@
+#signup-cc-form .form-item {
+	clear: left;
+	float: left;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	position: relative;
+}
+
+#signup-cc-form .form-item input {
+	padding: 6px;
+}
+
+#signup-cc-form .ahah-progress {
+	float: left;
+}
+
+#signup-cc-form .ahah-progress .throbber {
+	width: 16px;
+	height: 11px;
+	margin: 8px 5px 8px 10px;
+	background: transparent url(../images/loader.gif) no-repeat 0 0;
+	float: left;
+}
+
+#signup-cc-form .form-item input:hover,
+#signup-cc-form .form-item input:active,
+#signup-cc-form .form-item input:focus {
+	background-color: #eee;
+}
+
+#signup-cc-form .form-item label {
+	display: block;
+	width: 135px;
+	float: left;
+	line-height: 2.4em;
+}
+
+#signup-cc-form label.error {
+	background: url("../images/error.png") no-repeat scroll 5px center transparent;
+	color: #222222;
+	padding: 4px 9px 4px 25px;
+	position: absolute;
+	width: auto;
+	float: none;
+	display: inline;
+	white-space: nowrap;
+	top: 0;
+	line-height: 1.75em;
+}
+
+#signup-cc-form #edit-phone-wrapper label.error {
+	left: 193px !important;
+}
+
+html.js #edit-continue-to-dependent-dropdown {
+	display: none;
+}
+
+#signup-cc-form fieldset {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #999999;
+	border-style: solid;
+	border-width: 1px 0 0;
+	width: 500px;
+	padding: 10px 0 0;
+	margin: 0 0 20px;
+}
+
+#signup-cc-form fieldset#email-address {
+	border: none;
+}
+
+#signup-cc-form fieldset legend {
+	font-size: 1.2em;
+	color: #018EB4;
+	letter-spacing: 1px;
+}
+
+#signup-cc-form #edit-country-phone-wrapper {
+	float: left;
+}
+
+#signup-cc-form #edit-country-phone {
+	text-align: right;
+}
+
+#signup-cc-form #edit-phone-wrapper {
+	clear: none;
+	float: left;
+	margin-left: 10px;
+}
+
+#signup-cc-form #edit-phone {
+	text-align: left;
+}
+
+#signup-cc-form #edit-country-phone-wrapper .description {
+	margin-left: 135px;
+}
+
+#signup-cc-form #address-type  .form-radios {
+	float: left;
+	margin: 0;
+}
+
+#signup-cc-form #address-type label {
+}
+
+#signup-cc-form #address-type label.option {
+	width: 100px;
+	margin: 0 30p;
+}
+
+#signup-cc-form #edit-address-type-0-wrapper,
+#signup-cc-form #edit-address-type-1-wrapper {
+	float: left;
+	clear: none;
+}
