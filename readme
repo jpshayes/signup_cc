@@ -1,1 +1,2 @@
-You need to download the example package for constant contact / php from https://sourceforge.net/projects/ctctphplib/ and copy the cc_class.php file and place it in the module folder. Also, you need to include your constant contact credentials in the top of the cc_class.php file
+You need to download the example package for constant contact / php from https://sourceforge.net/projects/ctctphplib/ and copy the cc_class.php
+file and place it in the module folder. Also, you need to include your constant contact credentials in the top of the cc_class.php file

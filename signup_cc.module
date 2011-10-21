@@ -204,7 +204,8 @@ function signup_cc_form(&$form_state, $my_values = array()) {
  * button is pressed.
  */
 function signup_cc_form_submit($form, &$form_state) {
-	include_once('cc_class.php');
+	
+	module_load_include('php', 'signup_cc', 'cc_class');
 		
 	$ccContactOBJ = new CC_Contact();
 	$ccListOBJ = new CC_List();
@@ -222,6 +223,73 @@ function signup_cc_form_submit($form, &$form_state) {
 	$contactXML = $ccContactOBJ->createContactXML(null,$postFields);
 	
 	 if (!$ccContactOBJ->addSubscriber($contactXML)) {
-	  drupal_set_message(print $ccContactOBJ->lastError, TRUE);
-	}	
+	  drupal_set_message('There was an error while adding your information to our list, please contact help@example.com', 'error');
+	}	else {
+	  drupal_set_message('Thank you for signing up', 'status');
+	}
 }
+
+function signup_cc_block($op = 'list', $delta = '', $edit = array()) {
+	// The $op parameter determines what piece of information is being requested.
+	switch ($op) {
+		case 'list':
+			$blocks['signup'] = array(
+				'info' => t('Policy Signup'),
+			);
+			return $blocks;
+		case 'view':
+			switch ($delta) {
+				case 'signup':
+				// Add basic css file
+				drupal_add_css(drupal_get_path('module','signup_cc') . '/css/signup.cc.css');
+				// Add additional validation using javaScript
+				drupal_add_js(drupal_get_path('module','signup_cc') . '/js/jquery.validate.min.js');
+				drupal_add_js(drupal_get_path('module','signup_cc') . '/js/jquery.cookie.js');
+				drupal_add_js(drupal_get_path('module','signup_cc') . '/js/signup.cc.form.js');
+					$block['subject'] = t('Policy Signup');
+					$block['content'] = drupal_get_form('signup_cc_block_form');
+				break;
+			}
+		return $block;
+	}
+}
+
+
+function signup_cc_block_form($form_state) {
+	$form['email'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Email'),
+		'#size' => 40,
+		'#required' => TRUE,
+	);	
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => 'Sign Up'
+	);
+	$form['#redirect'] = 'signup/policy';
+	return $form;
+}
+
+// Validate block form
+function signup_cc_block_form_validate($form, &$form_state) {
+	$mail = $form_state['values']['email'];
+	if (!signup_cc_valid_email_address($mail)) {
+		form_set_error('mail', t('The e-mail address ' . $mail . ' is not a valid email address.'));
+	}
+}
+
+// Submit block form
+function signup_cc_block_form_submit($form, &$form_state) {
+	drupal_set_message(variable_get('sign_up_update', 'Please provide additional information.'));
+}
+
+
+function signup_cc_valid_email_address($mail) {
+	$user = '[a-zA-Z0-9_\-\.\+\^!#\$%&*+\/\=\?\`\|\{\}~\']+';
+	$domain = '(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.?)+';
+	$ipv4 = '[0-9]{1,3}(\.[0-9]{1,3}){3}';
+	$ipv6 = '[0-9a-fA-F]{1,4}(\:[0-9a-fA-F]{1,4}){7}';
+
+	return preg_match("/^$user@($domain|(\[($ipv4|$ipv6)\]))$/", $mail);
+}
+

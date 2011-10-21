@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#signup-data-block').validate({
+	$('#signup-cc-block-form').validate({
 		rules: {
 			email: {
 				required: true,
@@ -45,7 +45,7 @@ $(document).ready(function(){
 				$(error).css('left', w);
 		}
 	});
-	$('#signup-data-block, #signup-cc-form').submit(function(){
+	$('#signup-cc-block-form, #signup-cc-form').submit(function(){
 		var email = $('#edit-email').val()
 		$.cookie('signup', email, { expires: 7, path: '/' });
 	});
